@@ -1,3 +1,6 @@
+//Bug #1 : Able to drag and drop more than one piece into drop zone
+//Solution: Check if current drop zone has a child node (a puzzle piece), if it doesn't then allow for piece to be placed.
+
 //variables
 const theButtons = document.querySelectorAll("#buttonHolder img"),
     puzzleBoard = document.querySelector(".puzzle-board"),
@@ -30,7 +33,12 @@ function handleDrop(e) {
     console.log("dropped something on me");
     //this line moves the dragged piece from the left side of the board
     //into whatever dropzone we choose.
-    this.appendChild(draggedPiece);
+
+    // BUG #1
+    // This checks if the puzzle board has a piece in it, if current drop zone doesn't have a first child, then allow for piece to be dropped/append zone.
+    if(!this.firstChild) {
+        this.appendChild(draggedPiece);
+    }
 }
 
 //event Listeners
